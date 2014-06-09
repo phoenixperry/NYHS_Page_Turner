@@ -7,7 +7,7 @@ package
 	import flash.display.*;
 	import starling.core.Starling;
 	
-	[SWF(width="1440", height = "900", frameRate="60", background ="#000000"] 
+	[SWF(width="1440", height = "900", frameRate="60", backgroundColor ="#000000"] 
 	public class NYHS_Page_Turner extends Sprite
 	{
 		protected var st:Starling; 
