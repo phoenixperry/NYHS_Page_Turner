@@ -3,18 +3,15 @@ package
 
 
 	import flash.display.Bitmap;
-
+	
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
-
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
-
 	
+	import starling.animation.Transitions;
 	import starling.display.Image;
 	import starling.display.Sprite;
-
 	import starling.events.Event;
-
 	import starling.textures.Texture;
 
 	
@@ -33,6 +30,13 @@ package
 		private static const PAGE6:String = "PAGE6"; 
 		
 		private var nav:ScreenNavigator; 
+		public var pg1:ScreenNavigatorItem; 
+		public var pg2:ScreenNavigatorItem; 
+		public var pg3:ScreenNavigatorItem; 
+		public var pg4:ScreenNavigatorItem; 
+		public var pg5:ScreenNavigatorItem; 
+		public var pg6:ScreenNavigatorItem; 
+		
 		public function Main()
 		{
 			addEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
@@ -49,13 +53,15 @@ package
 			nav = new ScreenNavigator(); 
 			addChild(nav); 
 			var transition:ScreenSlidingStackTransitionManager = new ScreenSlidingStackTransitionManager(nav);  
+			transition.duration = 0.5;
+			//transition.ease = Transitions.EASE_IN; 
 
-			var pg1:ScreenNavigatorItem = new ScreenNavigatorItem(Page1, {forwardBtn:PAGE2}, null); 
-			var pg2:ScreenNavigatorItem = new ScreenNavigatorItem(Page2, {forwardBtn:PAGE3, backBtn:PAGE1}, null); 
-			var pg3:ScreenNavigatorItem = new ScreenNavigatorItem(Page3, {forwardBtn:PAGE4, backBtn:PAGE2}, null); 
-			var pg4:ScreenNavigatorItem = new ScreenNavigatorItem(Page4, {forwardBtn:PAGE5, backBtn:PAGE3}, null); 
-			var pg5:ScreenNavigatorItem = new ScreenNavigatorItem(Page5, {forwardBtn:PAGE6, backBtn:PAGE4}, null); 
-			var pg6:ScreenNavigatorItem = new ScreenNavigatorItem(Page6, {backBtn:PAGE5}, null); 
+			 pg1 = new ScreenNavigatorItem(Page1, {forwardBtn:PAGE2}, null); 
+			 pg2 = new ScreenNavigatorItem(Page2, {forwardBtn:PAGE3, backBtn:PAGE1}, null); 
+			 pg3 = new ScreenNavigatorItem(Page3, {forwardBtn:PAGE4, backBtn:PAGE2}, null); 
+			 pg4 = new ScreenNavigatorItem(Page4, {forwardBtn:PAGE5, backBtn:PAGE3}, null); 
+			 pg5 = new ScreenNavigatorItem(Page5, {forwardBtn:PAGE6, backBtn:PAGE4}, null); 
+			 pg6 = new ScreenNavigatorItem(Page6, {backBtn:PAGE5}, null); 
 		
 			nav.addScreen(PAGE1, pg1); 
 			nav.addScreen(PAGE2, pg2); 
@@ -64,8 +70,6 @@ package
 			nav.addScreen(PAGE5, pg5); 
 			nav.addScreen(PAGE6, pg6); 
 			nav.showScreen(PAGE1); 
-			
-	
 			removeEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
 
 	}
