@@ -53,7 +53,7 @@ package
 			nav = new ScreenNavigator(); 
 			addChild(nav); 
 			var transition:ScreenSlidingStackTransitionManager = new ScreenSlidingStackTransitionManager(nav);  
-			transition.duration = 0.5;
+			transition.duration = 0.6;
 			//transition.ease = Transitions.EASE_IN; 
 
 			 pg1 = new ScreenNavigatorItem(Page1, {forwardBtn:PAGE2}, null); 
