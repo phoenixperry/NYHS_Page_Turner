@@ -20,7 +20,7 @@ package
 		
 		private function goFullScreen():void
 		{
-			stage.displayState = StageDisplayState.FULL_SCREEN; 			
+		//	stage.displayState = StageDisplayState.FULL_SCREEN; 			
 		}
 	}
 }
