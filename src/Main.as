@@ -3,45 +3,27 @@ package
 
 
 	import flash.display.Bitmap;
-	import flash.geom.Point;
-	
-	import feathers.controls.Button;
-	import feathers.controls.Callout;
-	import feathers.controls.Label;
-	import feathers.controls.List;
+
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
-	import feathers.controls.TextArea;
-	import feathers.data.ListCollection;
+
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
-	import feathers.themes.MetalWorksMobileTheme;
+
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
-	import starling.display.Stage;
-	import starling.events.EnterFrameEvent;
+
 	import starling.events.Event;
-	import starling.events.Touch;
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
+
 	import starling.textures.Texture;
-	import starling.textures.TextureAtlas;
-	import starling.utils.Stats;
+
 	
 	public class Main extends Sprite
 	{
 		[Embed(source="./assets/background.png")]
 		private var bg:Class; 
-		
-		
-		
 		private var bgTexture:Texture; 
 
-
-	 
-		
-		private var pgBitmaps:Vector.<Bitmap>; 
-		private var pages:Vector.<Image>; 
 		
 		private static const PAGE1:String = "Page1"; 
 		private static const PAGE2:String = "Page2"; 
@@ -89,14 +71,6 @@ package
 	}
 	
 		
-		private function onTouch (e:TouchEvent):void
-		{
-			// get the mouse location related to the stage
-			var touch:Touch = e.getTouch(stage);
-			var pos:Point = touch.getLocation(stage);
-			
-			//position whatever you need to here - check for clicks whatever 
-			//note feathers might handle this. explore more
-		}
+
 	}
 }
