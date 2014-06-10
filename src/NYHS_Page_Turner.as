@@ -1,10 +1,11 @@
 package
 {
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.display.Stage;
 	import flash.display.StageDisplayState;
-	import flash.display.*;
+	import flash.events.Event;
+	import flash.ui.Mouse;
+	
 	import starling.core.Starling;
 
 	[SWF(width="1440", height = "900", frameRate="60", backgroundColor ="#000000"] 
@@ -12,7 +13,8 @@ package
 	{
 		protected var st:Starling; 
 		public function NYHS_Page_Turner()
-		{
+		{ 
+			Mouse.hide();
 			st = new Starling(Main, stage); 
 			st.start(); 
 			goFullScreen(); 

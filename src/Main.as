@@ -40,11 +40,12 @@ package
 		public function Main()
 		{
 			addEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
-			Mouse.hide(); 
+
 		}
 		
 		private function Init(e:starling.events.Event):void
 		{
+			Mouse.hide(); 
 			var bgBitmap:Bitmap = new bg(); 
 			bgTexture =  Texture.fromBitmap(bgBitmap, true); 
 			var bgImage = new Image(bgTexture); 
