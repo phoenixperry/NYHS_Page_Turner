@@ -6,7 +6,7 @@ package
 	import flash.display.StageDisplayState;
 	import flash.display.*;
 	import starling.core.Starling;
-	
+
 	[SWF(width="1440", height = "900", frameRate="60", backgroundColor ="#000000"] 
 	public class NYHS_Page_Turner extends Sprite
 	{
@@ -16,11 +16,12 @@ package
 			st = new Starling(Main, stage); 
 			st.start(); 
 			goFullScreen(); 
+	
 		}
 		
 		private function goFullScreen():void
 		{
-		//	stage.displayState = StageDisplayState.FULL_SCREEN; 			
+			stage.displayState = StageDisplayState.FULL_SCREEN; 			
 		}
 	}
 }

@@ -13,21 +13,28 @@ package
 	public class Page5 extends Screen
 	{
 		[Embed(source="./assets/05.png")]
-		private var Page5Asset:Class; 
+		private static var Page5Asset:Class; 
 		
 		
 		[Embed(source="./assets/next.png")]
-		public var Forward:Class; 
+		public static var Forward:Class; 
 		
 		[Embed(source="./assets/back.png")]
-		public var Back:Class; 
+		public static var Back:Class; 
 		
+
+		private  var forwardBtnTexture:Texture; 
+		private  var fbtn:Button; 
 		
-		private var forwardBtnTexture; 
-		private var fbtn:Button; 
+		private  var backBtnTexture:Texture; 
+		private  var backbtn:Button; 
 		
-		private var backBtnTexture; 
-		private var backbtn:Button;
+		private  var fBitmap:Bitmap; 
+		private  var bBitmap:Bitmap; 
+		private  var pgBitmap:Bitmap; 
+		private  var pgTexture:Texture; 
+		private var pgImage:Image; 
+		
 		public function Page5()
 		{
 			super();
@@ -38,9 +45,9 @@ package
 		}
 		override protected function initialize():void
 		{
-			var pgBitmap:Bitmap = new Page5Asset();
-			var pgTexture:Texture = Texture.fromBitmap(pgBitmap, true); 
-			var pgImage:Image = new Image(pgTexture); 
+			pgBitmap = new Page5Asset();
+			pgTexture = Texture.fromBitmap(pgBitmap, true); 
+			pgImage = new Image(pgTexture); 
 			addChild(pgImage); 
 			
 			var fBitmap:Bitmap = new Forward(); 
@@ -71,15 +78,24 @@ package
 		private function btriggered(e:Event):void
 		{
 			dispatchEventWith("backBtn", false); 
-			
+			deleteObjects();
 		}
 		
 		private function ftriggered(e:Event):void
 		{
 			dispatchEventWith("forwardBtn", false); 
 			trace( "button.isSelected has changed:", fbtn.isSelected );
-			
+			deleteObjects();
 		}
-		
+		private function deleteObjects():void
+		{
+			trace("deleting page2"); 
+			//forwardBtnTexture.dispose(); 
+			//fbtn.removeFromParent(true);
+			pgTexture.dispose(); 
+			//pgImage.removeFromParent(true);
+			//backBtnTexture.dispose(); 
+			//backbtn.removeFromParent(true); 
+		}
 	}
 }

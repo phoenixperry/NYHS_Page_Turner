@@ -14,7 +14,7 @@ package
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	
+	import flash.ui.Mouse;
 	public class Main extends Sprite
 	{
 		[Embed(source="./assets/background.png")]
@@ -40,6 +40,7 @@ package
 		public function Main()
 		{
 			addEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
+			Mouse.hide(); 
 		}
 		
 		private function Init(e:starling.events.Event):void

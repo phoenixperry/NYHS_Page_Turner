@@ -1,6 +1,7 @@
 package
 {
 	import flash.display.Bitmap;
+	import flash.text.StaticText;
 	
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
@@ -12,18 +13,19 @@ package
 	public class Page1 extends Screen
 	{
 		[Embed(source="./assets/01.png")]
-		private var Page1Asset:Class; 
+		private  var Page1Asset:Class; 
 		
 		[Embed(source="./assets/next.png")]
 		private var Forward:Class; 
 		
+		private var pgBitmap:Bitmap; 
 		
 		private var Page1Texture:Texture; 
 		
-		private var forwardBtnTexture; 
+		private var forwardBtnTexture:Texture; 
 		private var fbtn:Button; 
-	
-		
+		private var pgTexture:Texture; 
+		private var pgImage:Image; 
 		public function Page1()
 		{
 			
@@ -34,9 +36,9 @@ package
 		}
 		override protected function initialize():void
 		{
-			var pgBitmap:Bitmap = new Page1Asset();
-			var pgTexture:Texture = Texture.fromBitmap(pgBitmap, true); 
-			var pgImage:Image = new Image(pgTexture); 
+			pgBitmap = new Page1Asset();
+			pgTexture = Texture.fromBitmap(pgBitmap, true); 
+			pgImage = new Image(pgTexture); 
 			addChild(pgImage); 
 			
 			var fBitmap:Bitmap = new Forward(); 
@@ -57,7 +59,19 @@ package
 		{
 			dispatchEventWith("forwardBtn", false); 
 			trace( "button.isSelected has changed:", fbtn.isSelected );
+			deleteObjects();
 			
+		}
+		
+		private function deleteObjects():void
+		{
+			trace("deleting page2"); 
+		//	forwardBtnTexture.dispose(); 
+			//fbtn.removeFromParent(true);
+			pgTexture.dispose(); 
+			//pgImage.removeFromParent(true);
+		
+			//backbtn.removeFromParent(true); 
 		}
 		
 	}
