@@ -88,15 +88,12 @@ package
 			deleteObjects(); 
 		}
 		
-		private function deleteObjects():void
+		public function deleteObjects():void
 		{
 			trace("deleting page2"); 
-			//forwardBtnTexture.dispose(); 
-			//fbtn.removeFromParent(true);
+
 			pgTexture.dispose(); 
-			//pgImage.removeFromParent(true);
-			//backBtnTexture.dispose(); 
-			//backbtn.removeFromParent(true); 
+	
 		}
 		
 	}

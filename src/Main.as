@@ -3,7 +3,9 @@ package
 
 
 	import flash.display.Bitmap;
+	import flash.ui.Mouse;
 	
+	import feathers.controls.Button;
 	import feathers.controls.ScreenNavigator;
 	import feathers.controls.ScreenNavigatorItem;
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
@@ -14,13 +16,26 @@ package
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	import flash.ui.Mouse;
 	public class Main extends Sprite
 	{
 		[Embed(source="./assets/background.png")]
 		private var bg:Class; 
 		private var bgTexture:Texture; 
 
+		[Embed(source="./assets/next.png")]
+		public static var Forward:Class; 
+		
+		[Embed(source="./assets/back.png")]
+		public static var Back:Class; 
+		private  var forwardBtnTexture:Texture; 
+		private  var fbtn:Button; 
+		
+		private  var backBtnTexture:Texture; 
+		private  var backbtn:Button; 
+		
+		private  var fBitmap:Bitmap; 
+		private  var bBitmap:Bitmap; 
+		
 		
 		private static const PAGE1:String = "Page1"; 
 		private static const PAGE2:String = "Page2"; 
@@ -72,9 +87,50 @@ package
 			nav.addScreen(PAGE5, pg5); 
 			nav.addScreen(PAGE6, pg6); 
 			nav.showScreen(PAGE1); 
+			
+			//btns 
+			fBitmap = new Forward(); 
+			forwardBtnTexture = Texture.fromBitmap(fBitmap, true); 
+			fbtn = new Button(); 
+			fbtn.defaultSkin = new Image(forwardBtnTexture); 
+			fbtn.x = 1226; 
+			fbtn.y = 735; 
+			fbtn.addEventListener( Event.TRIGGERED, ftriggered);
+			//fbtn.addEventListener( Event.CHANGE, triggered );
+			addChild(fbtn);
+			fbtn.isSelected = false;
+			
+			var bBitmap:Bitmap = new Back(); 
+			backBtnTexture = Texture.fromBitmap(bBitmap, true); 
+			backbtn = new Button(); 
+			backbtn.defaultSkin = new Image(backBtnTexture); 
+			backbtn.x = 38; 
+			backbtn.y = 735; 
+			backbtn.addEventListener( Event.TRIGGERED, btriggered);
+			//fbtn.addEventListener( Event.CHANGE, triggered );
+			addChild(backbtn);
+			backbtn.isSelected = false;
+			
+			
+			
 			removeEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
+			
+			
 
 	}
+		
+		private function btriggered(e:Event):void
+		{
+			dispatchEventWith("backBtn", false); 
+		
+		}
+		
+		private function ftriggered(e:Event):void
+		{
+			dispatchEventWith("forwardBtn", false); 
+			trace( "button.isSelected has changed:", fbtn.isSelected );
+		 
+		}
 	
 		
 
