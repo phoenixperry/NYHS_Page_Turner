@@ -52,6 +52,9 @@ package
 		public var pg5:ScreenNavigatorItem; 
 		public var pg6:ScreenNavigatorItem; 
 		
+		private var currentPage:String; 
+		private var previousPage:String; 
+		
 		public function Main()
 		{
 			addEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
@@ -111,23 +114,82 @@ package
 			addChild(backbtn);
 			backbtn.isSelected = false;
 			
-			
+			currentPage = PAGE1;    
 			
 			removeEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
-			
-			
 
 	}
-		
 		private function btriggered(e:Event):void
 		{
-			dispatchEventWith("backBtn", false); 
-		
+			dispatchEventWith("forwardBtn", false); 
+			if(currentPage == PAGE2) 
+			{
+				nav.showScreen(PAGE1);
+				currentPage = PAGE1; 
+				
+			}
+				
+			else if(currentPage == PAGE3) 
+			{
+				nav.showScreen(PAGE2);
+				currentPage = PAGE2; 
+			}
+				
+			else if(currentPage == PAGE4) 
+			{
+				nav.showScreen(PAGE3);
+				currentPage = PAGE3; 
+			}
+				
+			else if(currentPage == PAGE5) 
+			{
+				nav.showScreen(PAGE4);
+				currentPage = PAGE4; 
+			}
+			else if(currentPage == PAGE6) 
+			{
+				nav.showScreen(PAGE5);
+				currentPage = PAGE5; 
+			}
+			
+			
 		}
 		
 		private function ftriggered(e:Event):void
 		{
-			dispatchEventWith("forwardBtn", false); 
+			//dispatchEventWith("forwardBtn", false); 
+			
+			//write if statements here 
+			if(currentPage == PAGE1)
+			{
+				nav.showScreen(PAGE2);
+				currentPage = PAGE2; 
+			}
+			else if(currentPage == PAGE2) 
+			{
+				nav.showScreen(PAGE3);
+				currentPage = PAGE3; 
+			}
+			
+			else if(currentPage == PAGE3) 
+			{
+				nav.showScreen(PAGE4);
+				currentPage = PAGE4; 
+			}
+			
+			else if(currentPage == PAGE4) 
+			{
+				nav.showScreen(PAGE5);
+				currentPage = PAGE5; 
+			}
+			
+			else if(currentPage == PAGE5) 
+			{
+				nav.showScreen(PAGE6);
+				currentPage = PAGE6; 
+			}
+			
+			
 			trace( "button.isSelected has changed:", fbtn.isSelected );
 		 
 		}

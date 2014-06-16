@@ -1,11 +1,9 @@
 package
 {
 	import flash.display.Bitmap;
-
 	
 	import feathers.controls.Button;
 	import feathers.controls.Screen;
-
 	
 	import starling.display.Image;
 	import starling.display.Quad;
@@ -21,8 +19,7 @@ package
 		[Embed(source="./assets/01.png")]
 		private  var Page1Asset:Class; 
 		
-		[Embed(source="./assets/next.png")]
-		private var Forward:Class; 
+
 		
 		[Embed(source="./assets/MinionPro-SemiboldIt.otf", embedAsCFF="false", fontName="MinionSemiBoldItalics", fontFamily="Minion",unicodeRange = "U+0020-U+007e")]
 		private static const MinionSemiBoldItalics:Class; 
@@ -56,7 +53,7 @@ package
 		private var ourChineseWall:String; 
 		private var excerpt:String;
 		private var bodyText:String; 
-		private var tombStone:String; 
+		private var tombStone:String;
 		
 		
 		public function Page1()
@@ -118,27 +115,27 @@ package
 			pgImage = new Image(pgTexture); 
 			addChild(pgImage); 
 			
-			var fBitmap:Bitmap = new Forward(); 
-			forwardBtnTexture = Texture.fromBitmap(fBitmap, true); 
-			fbtn = new Button(); 
-			fbtn.defaultSkin = new Image(forwardBtnTexture); 
-			fbtn.x = 1226; 
-			fbtn.y = 735; 
-			fbtn.addEventListener( Event.TRIGGERED, triggered);
-			//fbtn.addEventListener( Event.CHANGE, triggered );
-			addChild(fbtn);
-			fbtn.isSelected = false;	
+//			var fBitmap:Bitmap = new Forward(); 
+//			forwardBtnTexture = Texture.fromBitmap(fBitmap, true); 
+//			fbtn = new Button(); 
+//			fbtn.defaultSkin = new Image(forwardBtnTexture); 
+//			fbtn.x = 1226; 
+//			fbtn.y = 735; 
+//			fbtn.addEventListener( Event.TRIGGERED, triggered);
+//			//fbtn.addEventListener( Event.CHANGE, triggered );
+//			addChild(fbtn);
+//			fbtn.isSelected = false;	
 		}
 		
-		private function triggered(e:Event):void
-		{
-			dispatchEventWith("forwardBtn", false); 
-			trace( "button.isSelected has changed:", fbtn.isSelected );
-			deleteObjects();
-			
-		}
+//		private function triggered(e:Event):void
+//		{
+//			dispatchEventWith("forwardBtn", false); 
+//			trace( "button.isSelected has changed:", fbtn.isSelected );
+//			deleteObjects();
+//			
+//		}
 		
-		private function deleteObjects():void
+		public function deleteObjects():void
 		{
 			trace("deleting page2"); 
 		//	forwardBtnTexture.dispose(); 
