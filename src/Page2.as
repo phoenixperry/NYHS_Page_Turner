@@ -49,7 +49,7 @@ package
 			
 			
 			tombStone = "Our Chinese Wall, Citizens Committee To Repeal Chinese Exclusion, New York, 1943";
-			tombstoneField = new TextField(725, 30, tombStone, "MinionSemiBold", 20.83, 0x282828); 
+			tombstoneField = new TextField(770, 30, tombStone, "MinionSemiBold", 20.83, 0x282828); 
 			tombstoneField.vAlign = VAlign.TOP; 
 			tombstoneField.hAlign = HAlign.CENTER; 
 			tombstoneField.x = 284; 
