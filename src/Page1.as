@@ -85,7 +85,7 @@ package
 			
 			
 			tombStone = "Our Chinese Wall, Courtesy of Pearl Buck House";
-			tombstoneField = new TextField(413, 24, tombStone, "MinionSemiBold", 20.83, Main.greyColor); 
+			tombstoneField = new TextField(413, 30, tombStone, "MinionSemiBold", 20.83, Main.greyColor); 
 			tombstoneField.vAlign = VAlign.TOP; 
 			tombstoneField.hAlign = HAlign.CENTER; 
 			tombstoneField.x = 735; 
