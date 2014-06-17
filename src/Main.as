@@ -207,6 +207,8 @@ package
 		{
 				nav.showScreen(PAGE1); 
 				currentPage = PAGE1; 
+				fadeBackDown = true; 
+				fadeNextUp = true; 
 			
 		}
 		
