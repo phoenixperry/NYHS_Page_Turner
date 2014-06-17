@@ -206,6 +206,7 @@ package
 		private function checkForUser (e:TimerEvent):void
 		{
 				nav.showScreen(PAGE1); 
+				currentPage = PAGE1; 
 			
 		}
 		
