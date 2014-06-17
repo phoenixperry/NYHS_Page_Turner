@@ -1,42 +1,33 @@
 package
 {
-	import feathers.controls.Screen;
 	import flash.display.Bitmap;
 	
-	import feathers.controls.Button;
 	import feathers.controls.Screen;
 	
 	import starling.display.Image;
-	import starling.events.Event;
+	import starling.text.TextField;
 	import starling.textures.Texture;
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
 	
 	public class Page4 extends Screen
 	{
 		[Embed(source="./assets/04.png")]
-		private static var Page4Asset:Class; 
+		private var Page4Asset:Class;
 		
 		
-		[Embed(source="./assets/next.png")]
-		public static var Forward:Class; 
+		[Embed(source="./assets/MinionPro-Semibold.otf", embedAsCFF="false", fontName="MinionSemiBold", fontFamily="Minion", unicodeRange = "U+0020-U+007e")]
+		private static const MinionSemiBold:Class; 
 		
-		[Embed(source="./assets/back.png")]
-		public static var Back:Class; 
+		public var tombStone:String;
+		public var tombstoneField:starling.text.TextField; 
 		
-
-		private  var forwardBtnTexture:Texture; 
-		private  var fbtn:Button; 
-		
-		private  var backBtnTexture:Texture; 
-		private  var backbtn:Button; 
-		
-		private  var fBitmap:Bitmap; 
-		private  var bBitmap:Bitmap; 
-		private  var pgBitmap:Bitmap; 
-		private  var pgTexture:Texture; 
+		private var pgBitmap:Bitmap; 
+		private var pgTexture:Texture; 
 		private var pgImage:Image; 
 		public function Page4()
 		{
-			super();
+			
 		}
 		override protected function draw():void
 		{
@@ -44,57 +35,19 @@ package
 		}
 		override protected function initialize():void
 		{
-			 pgBitmap = new Page4Asset();
+			pgBitmap = new Page4Asset();
 			pgTexture = Texture.fromBitmap(pgBitmap, true); 
 			pgImage = new Image(pgTexture); 
 			addChild(pgImage); 
-			
-			var fBitmap:Bitmap = new Forward(); 
-			forwardBtnTexture = Texture.fromBitmap(fBitmap, true); 
-			fbtn = new Button(); 
-			fbtn.defaultSkin = new Image(forwardBtnTexture); 
-			fbtn.x = 1226; 
-			fbtn.y = 735; 
-			fbtn.addEventListener( Event.TRIGGERED, ftriggered);
-			//fbtn.addEventListener( Event.CHANGE, triggered );
-			addChild(fbtn);
-			fbtn.isSelected = false;
-			
-			var bBitmap:Bitmap = new Back(); 
-			backBtnTexture = Texture.fromBitmap(bBitmap, true); 
-			backbtn = new Button(); 
-			backbtn.defaultSkin = new Image(backBtnTexture); 
-			backbtn.x = 38; 
-			backbtn.y = 735; 
-			backbtn.addEventListener( Event.TRIGGERED, btriggered);
-			//fbtn.addEventListener( Event.CHANGE, triggered );
-			addChild(backbtn);
-			backbtn.isSelected = false;
-			
-			
+			trace("page4made"); 
+			tombStone = "Our Chinese Wall, Citizens Committee To Repeal Chinese Exclusion, New York, 1943";
+			tombstoneField = new TextField(725, 24, tombStone, "MinionSemiBold", 20.83, 0x282828); 
+			tombstoneField.vAlign = VAlign.TOP; 
+			tombstoneField.hAlign = HAlign.CENTER; 
+			tombstoneField.x = 284; 
+			tombstoneField.y = 837; 
+			addChild(tombstoneField); 
 		}
 		
-		private function btriggered(e:Event):void
-		{
-			dispatchEventWith("backBtn", false); 
-			deleteObjects();
-		}
-		
-		private function ftriggered(e:Event):void
-		{
-			dispatchEventWith("forwardBtn", false); 
-			trace( "button.isSelected has changed:", fbtn.isSelected );
-			deleteObjects();
-		}
-		private function deleteObjects():void
-		{
-			trace("deleting page2"); 
-			//forwardBtnTexture.dispose(); 
-			//fbtn.removeFromParent(true);
-			pgTexture.dispose(); 
-			//pgImage.removeFromParent(true);
-		//	backBtnTexture.dispose(); 
-			//backbtn.removeFromParent(true); 
-		}
 	}
 }

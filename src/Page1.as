@@ -1,13 +1,10 @@
 package
 {
 	import flash.display.Bitmap;
-	
-	import feathers.controls.Button;
+
 	import feathers.controls.Screen;
-	
 	import starling.display.Image;
 	import starling.display.Quad;
-	import starling.events.Event;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.Color;
@@ -19,8 +16,6 @@ package
 		[Embed(source="./assets/01.png")]
 		private  var Page1Asset:Class; 
 		
-
-		
 		[Embed(source="./assets/MinionPro-SemiboldIt.otf", embedAsCFF="false", fontName="MinionSemiBoldItalics", fontFamily="Minion",unicodeRange = "U+0020-U+007e")]
 		private static const MinionSemiBoldItalics:Class; 
 		
@@ -31,29 +26,17 @@ package
 		private static const MinionSemiBold:Class; 
 		
 		private var pgBitmap:Bitmap; 
-		
-		private var Page1Texture:Texture; 
-		
-		private var forwardBtnTexture:Texture; 
-		private var fbtn:Button; 
-		private var pgTexture:Texture; 
-		private var pgImage:Image; 
-		private var textfield:TextField; 
-
-		
-		private var datefield: TextField; 
-
-		
-		private var bodyfield:TextField; 
-
-		
-		private var tombstoneField:TextField; 
-
-		
-		private var ourChineseWall:String; 
-		private var excerpt:String;
-		private var bodyText:String; 
-		private var tombStone:String;
+		public var Page1Texture:Texture; 
+		public var pgTexture:Texture; 
+		public var pgImage:Image; 
+		public var textfield:TextField; 
+		public var datefield: TextField; 
+		public var bodyfield:TextField;
+		public var tombstoneField:TextField; 
+		public var ourChineseWall:String; 
+		public var excerpt:String;
+		public var bodyText:String; 
+		public var tombStone:String;
 		
 		
 		public function Page1()
@@ -68,7 +51,7 @@ package
 		}
 		override protected function initialize():void
 		{
-		
+			trace("page 1 made"); 
 			
 			var rect:Quad = new Quad(449,485, 0x90a5b8, true); 
 			rect.x = 257; 
@@ -77,7 +60,7 @@ package
 			
 			
 			ourChineseWall = "Our Chinese Wall,";
-			textfield = new TextField(392, 554, ourChineseWall, "MinionSemiBoldItalics", 37.5, Color.BLACK); 
+			textfield = new TextField(392, 554, ourChineseWall, "MinionSemiBoldItalics", 37.5, Main.greyColor); 
 			textfield.vAlign = VAlign.TOP; 
 			textfield.hAlign = HAlign.RIGHT;
 			textfield.x = 287; 
@@ -85,15 +68,15 @@ package
 			addChild(textfield);
 			
 			excerpt = "excerpt, 1943";
-			datefield = new TextField(392, 554, excerpt, "MinionSemiBold", 37.5, Color.BLACK); 
+			datefield = new TextField(392, 554, excerpt, "MinionSemiBold", 37.5, Main.greyColor); 
 			datefield.vAlign = VAlign.TOP; 
 			datefield.hAlign = HAlign.RIGHT; 
 			datefield.x = 287; 
 			datefield.y = 313; 
 			addChild(datefield); 
 			
-			bodyText = "The Citizens Committee to Repeal Chinese Exclusion distributed more than 30,000 copies of this pamphlet to clubs, libraries, labor unions, religious organizations, and the press. Their efforts put the repeal of Chinese Exclusion on the national agenda.";
-			bodyfield = new TextField(392, 554, bodyText, "MinionRegular", 25, Color.BLACK); 
+			bodyText = "The Citizens Committee to Repeal Chinese Exclusion distributed"+"\n"+ "more than 30,000 copies of this pamphlet to clubs, libraries, labor unions, religious organizations, and the press. Their efforts put the repeal of Chinese Exclusion on" + "\n"+"the national agenda.";
+			bodyfield = new TextField(392, 570, bodyText, "MinionRegular", 27.3, Main.greyColor); 
 			bodyfield.vAlign = VAlign.TOP; 
 			bodyfield.hAlign = HAlign.RIGHT; 
 			bodyfield.x = 287; 
@@ -102,7 +85,7 @@ package
 			
 			
 			tombStone = "Our Chinese Wall, Courtesy of Pearl Buck House";
-			tombstoneField = new TextField(413, 24, tombStone, "MinionSemiBold", 20.83, Color.BLACK); 
+			tombstoneField = new TextField(413, 24, tombStone, "MinionSemiBold", 20.83, Main.greyColor); 
 			tombstoneField.vAlign = VAlign.TOP; 
 			tombstoneField.hAlign = HAlign.CENTER; 
 			tombstoneField.x = 735; 
@@ -115,40 +98,8 @@ package
 			pgImage = new Image(pgTexture); 
 			addChild(pgImage); 
 			
-//			var fBitmap:Bitmap = new Forward(); 
-//			forwardBtnTexture = Texture.fromBitmap(fBitmap, true); 
-//			fbtn = new Button(); 
-//			fbtn.defaultSkin = new Image(forwardBtnTexture); 
-//			fbtn.x = 1226; 
-//			fbtn.y = 735; 
-//			fbtn.addEventListener( Event.TRIGGERED, triggered);
-//			//fbtn.addEventListener( Event.CHANGE, triggered );
-//			addChild(fbtn);
-//			fbtn.isSelected = false;	
 		}
-		
-//		private function triggered(e:Event):void
-//		{
-//			dispatchEventWith("forwardBtn", false); 
-//			trace( "button.isSelected has changed:", fbtn.isSelected );
-//			deleteObjects();
-//			
-//		}
-		
-		public function deleteObjects():void
-		{
-			trace("deleting page2"); 
-		//	forwardBtnTexture.dispose(); 
-			//fbtn.removeFromParent(true);
-			pgTexture.dispose(); 
-			tombstoneField.dispose(); 
-			bodyfield.dispose(); 
-			datefield.dispose(); 
-			textfield.dispose(); 
-			//pgImage.removeFromParent(true);
-		
-			//backbtn.removeFromParent(true); 
-		}
+	
 		
 	}
 }
