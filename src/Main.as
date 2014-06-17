@@ -196,7 +196,9 @@ package
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame); 
 			
 			//timer kick off 
-			time = new Timer (270000); 
+			//time = new Timer (270000);
+			//debug timer
+			time = new Timer (3000);
 			time.start();
 			time.addEventListener(TimerEvent.TIMER, checkForUser); 
 	}
