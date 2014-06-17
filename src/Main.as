@@ -173,11 +173,15 @@ package
 			backbtn.addEventListener( Event.TRIGGERED, btriggered);
 		
 			container.addChild(backbtn);
-			//container.x = (stage.stageWidth - container.width)/2; 
-			//container.y = (stage.stageHeight - container.height)/2;
+			trace(container.width +" " + stage.stageWidth);
 			container.x =0;
-			//you are here 
 			container.y =0; 
+			container.x = (stage.stageWidth - container.width)/4; 
+			container.y = (stage.stageHeight- container.height)/4;
+	
+			//container.x =0;
+			//you are here 
+			//container.y =0; 
 			addChild(container);
 			backbtn.isSelected = false;
 			backbtn.alpha = 0; 
