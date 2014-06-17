@@ -3,9 +3,11 @@ package
 
 
 	import flash.display.Bitmap;
+	import flash.events.TimerEvent;
 	import flash.text.TextFormat;
 	import flash.text.nextText;
 	import flash.ui.Mouse;
+	import flash.utils.Timer;
 	
 	import feathers.controls.Button;
 	import feathers.controls.ScreenNavigator;
@@ -88,6 +90,10 @@ package
 		private var nextText:TextFieldTextRenderer
 		private var backText:TextFieldTextRenderer
 		private var container:Sprite; 
+		
+		//boolean to check for interativity and timer 
+		private var time:Timer; 
+
 		
 		public function Main()
 		{
@@ -176,34 +182,31 @@ package
 			trace(container.width +" " + stage.stageWidth);
 			container.x =0;
 			container.y =0; 
-			container.x = (stage.stageWidth - container.width)/4; 
-			container.y = (stage.stageHeight- container.height)/4;
-	
-			//container.x =0;
-			//you are here 
-			//container.y =0; 
+			container.x = ((stage.stageWidth - container.width)/4); 
+			container.y = (stage.stageHeight - container.height)/4; 
+
 			addChild(container);
 			backbtn.isSelected = false;
 			backbtn.alpha = 0; 
 			currentPage = PAGE1;    
 			
 
-//			var next:String = "Next";
-//			fBtnText  = new TextField(392, 554, next, "MinionSemiBoldItalics", 21.88, Main.greyColor); 
-//			fBtnText.x = 1238;
-//			fBtnText.y = 765; 
-//		 	addChild(fBtnText); 
-//			
-//			backBtnText  = new TextField(392, 554, "Previous", "MinionSemiBoldItalics", 21.88, Main.greyColor);
-//			backBtnText.x = 148; 
-//			backBtnText.y = 765; 
-//			backBtnText.hAlign = HAlign.LEFT; 
-//			//			addChild(backBtnText); 
 			
 			removeEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame); 
 			
+			//timer kick off 
+			time = new Timer (270000); 
+			time.start();
+			time.addEventListener(TimerEvent.TIMER, checkForUser); 
 	}
+		
+		private function checkForUser (e:TimerEvent):void
+		{
+				nav.showScreen(PAGE1); 
+			
+		}
+		
 		public function onEnterFrame(event:EnterFrameEvent):void
 		{
 			if(fadeBackUp)
@@ -215,6 +218,7 @@ package
 				Starling.juggler.add(tween);
 				Starling.juggler.add(tween2); 
 				tween.onComplete = function():void { fadeBackUp =false }
+				
 			}
 			if(fadeBackDown)
 			{
@@ -250,7 +254,9 @@ package
 			
 		}
 		public function btriggered(e:Event):void
-		{
+		{	
+			time.reset();
+			time.start();
 			dispatchEventWith("forwardBtn", false); 
 			if(currentPage == PAGE2) 
 			{
@@ -289,6 +295,8 @@ package
 		
 		private function ftriggered(e:Event):void
 		{
+			time.reset();
+			time.start();
 			//dispatchEventWith("forwardBtn", false); 
 			
 			//write if statements here 
