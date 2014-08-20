@@ -1,7 +1,8 @@
 package
 {
-
-
+	
+	
+	import flash.desktop.NativeApplication;
 	import flash.display.Bitmap;
 	import flash.events.TimerEvent;
 	import flash.text.TextFormat;
@@ -26,13 +27,13 @@ package
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
-
+	
 	public class Main extends Sprite
 	{
 		[Embed(source="./assets/background.png")]
 		private var bg:Class; 
 		private var bgTexture:Texture; 
-
+		
 		[Embed(source="./assets/next.png")]
 		public static var Forward:Class; 
 		
@@ -77,13 +78,13 @@ package
 		public var Page4Screen:Page4; 
 		public var Page5Screen:Page5; 
 		public var Page6Screen:Page6; 
-	
+		
 		//fade states 
 		public var fadeBackUp:Boolean; 
 		public var fadeNextUp:Boolean; 
 		public var fadeBackDown:Boolean; 
 		public var fadeNextDown:Boolean; 
-
+		
 		private var fadeTime:Number = 0.8;
 		public static var greyColor:uint= 0x282828; 
 		
@@ -93,16 +94,18 @@ package
 		
 		//boolean to check for interativity and timer 
 		private var time:Timer; 
-
+		
 		
 		public function Main()
 		{
 			addEventListener(starling.events.Event.ADDED_TO_STAGE, Init); 
-
+			
 		}
 		
 		private function Init(e:starling.events.Event):void
 		{
+			addEventListener(starling.events.KeyboardEvent.KEY_DOWN, quitOut);
+			
 			container = new Sprite();
 			Page1Screen = new Page1(); 
 			Page2Screen = new Page2(); 
@@ -124,14 +127,14 @@ package
 			var transition:ScreenSlidingStackTransitionManager = new ScreenSlidingStackTransitionManager(nav);  
 			transition.duration = 0.6;
 			//transition.ease = Transitions.EASE_IN; 
-
-			 pg1 = new ScreenNavigatorItem(Page1Screen, {forwardBtn:PAGE2}, null); 
-			 pg2 = new ScreenNavigatorItem(Page2Screen, {forwardBtn:PAGE3, backBtn:PAGE1}, null); 
-			 pg3 = new ScreenNavigatorItem(Page3Screen, {forwardBtn:PAGE4, backBtn:PAGE2}, null); 
-			 pg4 = new ScreenNavigatorItem(Page4Screen, {forwardBtn:PAGE5, backBtn:PAGE3}, null); 
-			 pg5 = new ScreenNavigatorItem(Page5Screen, {forwardBtn:PAGE6, backBtn:PAGE4}, null); 
-			 pg6 = new ScreenNavigatorItem(Page6Screen, {backBtn:PAGE5}, null); 
-		
+			
+			pg1 = new ScreenNavigatorItem(Page1Screen, {forwardBtn:PAGE2}, null); 
+			pg2 = new ScreenNavigatorItem(Page2Screen, {forwardBtn:PAGE3, backBtn:PAGE1}, null); 
+			pg3 = new ScreenNavigatorItem(Page3Screen, {forwardBtn:PAGE4, backBtn:PAGE2}, null); 
+			pg4 = new ScreenNavigatorItem(Page4Screen, {forwardBtn:PAGE5, backBtn:PAGE3}, null); 
+			pg5 = new ScreenNavigatorItem(Page5Screen, {forwardBtn:PAGE6, backBtn:PAGE4}, null); 
+			pg6 = new ScreenNavigatorItem(Page6Screen, {backBtn:PAGE5}, null); 
+			
 			nav.addScreen(PAGE1, pg1); 
 			nav.addScreen(PAGE2, pg2); 
 			nav.addScreen(PAGE3, pg3); 
@@ -140,7 +143,6 @@ package
 			nav.addScreen(PAGE6, pg6); 
 			nav.showScreen(PAGE1); 
 			
-		
 			//words for butttons 
 			nextText = new TextFieldTextRenderer();
 			nextText.textFormat = new TextFormat( "MinionSemiBoldItalics", 21.88, Main.greyColor );
@@ -169,7 +171,7 @@ package
 			fbtn.addEventListener( Event.TRIGGERED, ftriggered);
 			container.addChild(fbtn);
 			fbtn.isSelected = false;
-	
+			
 			var bBitmap:Bitmap = new Back(); 
 			backBtnTexture = Texture.fromBitmap(bBitmap, true); 
 			backbtn = new Button(); 
@@ -177,14 +179,14 @@ package
 			backbtn.x = 50; 
 			backbtn.y = 740; 
 			backbtn.addEventListener( Event.TRIGGERED, btriggered);
-		
+			
 			container.addChild(backbtn);
 			trace(container.width +" " + stage.stageWidth);
-			container.x =0;
-			container.y =0; 
-			container.x = ((stage.stageWidth - container.width)/4); 
-			container.y = (stage.stageHeight - container.height)/4; 
-
+			//container.x =0;
+			//container.y =0; 
+			//container.x = ((stage.stageWidth - container.width)/4); 
+			//container.y = (stage.stageHeight - container.height)/4; 
+			
 			addChild(container);
 			backbtn.isSelected = false;
 			backbtn.alpha = 0; 
@@ -196,19 +198,19 @@ package
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame); 
 			
 			//timer kick off 
-			//time = new Timer (270000);
+			time = new Timer (27000);
 			//debug timer
-			time = new Timer (3000);
+			//time = new Timer (3000);
 			time.start();
 			time.addEventListener(TimerEvent.TIMER, checkForUser); 
-	}
+		}
 		
 		private function checkForUser (e:TimerEvent):void
 		{
-				nav.showScreen(PAGE1); 
-				currentPage = PAGE1; 
-				fadeBackDown = true; 
-				fadeNextUp = true; 
+			nav.showScreen(PAGE1); 
+			currentPage = PAGE1; 
+			fadeBackDown = true; 
+			fadeNextUp = true; 
 			
 		}
 		
@@ -316,29 +318,46 @@ package
 				nav.showScreen(PAGE3);
 				currentPage = PAGE3; 
 			}
-			
+				
 			else if(currentPage == PAGE3) 
 			{
 				nav.showScreen(PAGE4);
 				currentPage = PAGE4; 
 			}
-			
+				
 			else if(currentPage == PAGE4) 
 			{
 				nav.showScreen(PAGE5);
 				currentPage = PAGE5; 
 			}
-			
+				
 			else if(currentPage == PAGE5) 
 			{
 				nav.showScreen(PAGE6);
 				currentPage = PAGE6; 
 				fadeNextDown= true;
 			}
-		 
+			
 		}
-	
 		
-
+		
+		private function quitOut(e:starling.events.KeyboardEvent):void
+		{
+			//trace(e.keyCode); 
+			if(e.keyCode == 27)
+			{
+				NativeApplication.nativeApplication.exit(0);
+			}
+			if(e.keyCode == 83) 
+			{
+				Mouse.show(); 
+			}
+	
+			if(e.keyCode == 72) 
+			{
+				Mouse.hide(); 
+			}		
+		}
+		
 	}
 }

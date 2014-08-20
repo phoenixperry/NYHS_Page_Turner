@@ -5,6 +5,7 @@ package
 	import feathers.controls.Screen;
 	
 	import starling.display.Image;
+	import starling.display.Quad;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.HAlign;
@@ -18,8 +19,10 @@ package
 		[Embed(source="./assets/MinionPro-Semibold.otf", embedAsCFF="false", fontName="MinionSemiBold", fontFamily="Minion", unicodeRange = "U+0020-U+007e")]
 		private static const MinionSemiBold:Class; 
 		
-		public var tombStone:String;
-		public var tombstoneField:starling.text.TextField; 
+		[Embed(source="./assets/tombstone.png")]		
+		private var tombBitmap:Class; 
+		private var tombTexture:Texture; 
+		private var tombImage:Image; 
 		
 		private var pgBitmap:Bitmap; 
 		private var pgTexture:Texture; 
@@ -40,13 +43,20 @@ package
 			addChild(pgImage); 
 			trace("page6made"); 
 			
-			tombStone = "Our Chinese Wall, Courtesy of Pearl Buck House";
-			tombstoneField = new TextField(770, 30, tombStone, "MinionSemiBold", 20.83, Main.greyColor); 
-			tombstoneField.vAlign = VAlign.TOP; 
-			tombstoneField.hAlign = HAlign.LEFT; 
-			tombstoneField.x = 284; 
-			tombstoneField.y = 837; 
-			addChild(tombstoneField); 
+			var rect:Quad = new Quad(449,295, 0x90a5b8, true); 
+			rect.x = 757; 
+			rect.y = 336;
+			rect.alpha = .8; 
+			addChild(rect);
+			
+			
+			var tombBits:Bitmap = new tombBitmap(); 
+			tombTexture = Texture.fromBitmap(tombBits, true); 
+			tombImage = new Image(tombTexture); 
+			tombImage.x = 757; 
+			tombImage.y = 336; 
+			addChild(tombImage); 	
+		
 
 		}
 		

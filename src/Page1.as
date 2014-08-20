@@ -1,10 +1,12 @@
 package
 {
 	import flash.display.Bitmap;
-
+	
 	import feathers.controls.Screen;
+	
 	import starling.display.Image;
 	import starling.display.Quad;
+	import starling.display.Sprite;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.utils.Color;
@@ -38,6 +40,7 @@ package
 		public var bodyText:String; 
 		public var tombStone:String;
 		
+		public var centerBox:Sprite; 
 		
 		public function Page1()
 		{
@@ -56,7 +59,8 @@ package
 			var rect:Quad = new Quad(449,485, 0x90a5b8, true); 
 			rect.x = 257; 
 			rect.y = 226;
-			addChild(rect);
+			centerBox = new Sprite();
+			centerBox.addChild(rect);
 			
 			
 			ourChineseWall = "Our Chinese Wall,";
@@ -65,7 +69,7 @@ package
 			textfield.hAlign = HAlign.RIGHT;
 			textfield.x = 287; 
 			textfield.y = 265; 
-			addChild(textfield);
+			centerBox.addChild(textfield);
 			
 			excerpt = "excerpt, 1943";
 			datefield = new TextField(392, 554, excerpt, "MinionSemiBold", 37.5, Main.greyColor); 
@@ -73,7 +77,7 @@ package
 			datefield.hAlign = HAlign.RIGHT; 
 			datefield.x = 287; 
 			datefield.y = 313; 
-			addChild(datefield); 
+			centerBox.addChild(datefield); 
 			
 			bodyText = "The Citizens Committee to Repeal Chinese Exclusion distributed"+"\n"+ "more than 30,000 copies of this pamphlet to clubs, libraries, labor unions, religious organizations, and the press. Their efforts put the repeal of Chinese Exclusion on" + "\n"+"the national agenda.";
 			bodyfield = new TextField(392, 570, bodyText, "MinionRegular", 27.3, Main.greyColor); 
@@ -81,23 +85,28 @@ package
 			bodyfield.hAlign = HAlign.RIGHT; 
 			bodyfield.x = 287; 
 			bodyfield.y = 388; 
-			addChild(bodyfield); 
+			centerBox.addChild(bodyfield); 
 			
 			
-			tombStone = "Our Chinese Wall, Courtesy of Pearl Buck House";
-			tombstoneField = new TextField(413, 30, tombStone, "MinionSemiBold", 20.83, Main.greyColor); 
-			tombstoneField.vAlign = VAlign.TOP; 
-			tombstoneField.hAlign = HAlign.CENTER; 
-			tombstoneField.x = 735; 
-			tombstoneField.y = 837; 
-			addChild(tombstoneField); 
-			
+//			tombStone = "Our Chinese Wall, Courtesy of Pearl Buck House";
+//			tombstoneField = new TextField(413, 30, tombStone, "MinionSemiBold", 20.83, Main.greyColor); 
+//			tombstoneField.vAlign = VAlign.TOP; 
+//			tombstoneField.hAlign = HAlign.CENTER; 
+//			tombstoneField.x = 735; 
+//			tombstoneField.y = 837; 
+//			centerBox.addChild(tombstoneField); 
+//			
 			
 			pgBitmap = new Page1Asset();
 			pgTexture = Texture.fromBitmap(pgBitmap, true); 
 			pgImage = new Image(pgTexture); 
-			addChild(pgImage); 
-			
+			centerBox.addChild(pgImage); 
+			var num = stage.stageWidth - pgImage.width; 
+			 
+			addChild(centerBox); 
+			//centerBox.x = (stage.stageWidth - centerBox.width)/2; 
+			//centerBox.y = (stage.stageHeight - centerBox.height)/2; 
+			trace(centerBox.x);
 		}
 	
 		
